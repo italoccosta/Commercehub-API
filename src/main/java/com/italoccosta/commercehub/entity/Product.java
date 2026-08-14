@@ -44,6 +44,20 @@ public class Product {
         stock.associateProduct(this);
     }
 
+    public void removeStock(){
+        if(this.stock == null){
+            throw new InvalidStockException("This product doesn't have a stock");
+        }
+        this.stock = null;
+    }
+
+    public void updateProduct(String name, String description, BigDecimal price) {
+        validateProduct(name,description,price);
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
     private void validateProduct(String name, String description, BigDecimal price) {
         if(name == null ){
             throw new InvalidProductException("Product name can't be null");

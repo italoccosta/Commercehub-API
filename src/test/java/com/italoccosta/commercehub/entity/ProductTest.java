@@ -156,4 +156,33 @@ public class ProductTest {
                 ()->
                 {product.addStock(null);});
     }
+
+    @Test
+    void shouldRemoveStock(){
+
+        Product product = new Product(
+                "cadeira",
+                "Cadeira ergonômica",
+                BigDecimal.valueOf(350.00)
+        );
+        Stock stock1 = new Stock(product, 50);
+
+        product.addStock(stock1);
+        product.removeStock();
+
+        assertNull(product.getStock());
+    }
+
+    @Test
+    void shouldRejectToRemoveStockWhenStockIsNull(){
+
+        Product product = new Product(
+                "cadeira",
+                "Cadeira ergonômica",
+                BigDecimal.valueOf(350.00)
+        );
+
+        assertThrows(InvalidStockException.class,
+                () -> product.removeStock());
+    }
 }
