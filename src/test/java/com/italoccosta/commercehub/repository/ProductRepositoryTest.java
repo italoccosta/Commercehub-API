@@ -128,4 +128,29 @@ public class ProductRepositoryTest {
         assertEquals(null, savedProduct.get().getStock());
 
     }
+
+    @Test
+    void shouldRemoveProductAndStock(){
+        Product product = new Product("Caneta",
+                "Caneta azul",
+                BigDecimal.valueOf(2));
+
+        Stock stock = new Stock(product, 50);
+        product.addStock(stock);
+
+        repository.save(product);
+        repository.flush();
+
+        UUID productId = product.getId();
+        UUID stockId = stock.getId();
+
+        repository.delete(product);
+        repository.flush();
+
+        Optional<Product> removedProduct = repository.findById(productId);
+        Optional<Stock> removedStock = stockRepository.findById(stockId);
+
+        assertTrue(removedProduct.isEmpty());
+        assertTrue(removedStock.isEmpty());
+    }
 }
