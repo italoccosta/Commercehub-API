@@ -38,19 +38,6 @@ public class Stock {
         this.quantity = quantity;
     }
 
-    public void associateProduct(Product product){
-        if(product == null){
-            throw new InvalidStockException("Product cannot be null");
-        }
-        if(this.product == product){
-            return;
-        }
-        if(this.product != null && this.product != product){
-          throw new InvalidStockException("this stock is already associated with another product");
-        }
-        this.product = product;
-    }
-
     public void increaseQuantity(Integer quantity){
         if(quantity == null){
             throw  new InvalidStockException("Stock quantity cannot be null");

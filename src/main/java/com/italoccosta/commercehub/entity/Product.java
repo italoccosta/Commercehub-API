@@ -41,7 +41,6 @@ public class Product {
             throw new InvalidStockException("Product already has a stock");
         }
         this.stock = stock;
-        stock.associateProduct(this);
     }
 
     public void removeStock(){

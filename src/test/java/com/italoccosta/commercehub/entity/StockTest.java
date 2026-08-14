@@ -58,34 +58,6 @@ public class StockTest {
     }
 
     @Test
-    void shouldAllowReassociatingSameProduct(){
-        Stock stock = new Stock(product, 50);
-        stock.associateProduct(product);
-
-        assertDoesNotThrow(() -> stock.associateProduct(product));
-
-        assertEquals(product, stock.getProduct());
-    }
-
-    @Test
-    void shouldRejectAssociateNullProduct(){
-        assertThrows(InvalidStockException.class,
-                ()-> new Stock(product, 10)
-                        .associateProduct(null));
-    }
-
-    @Test
-    void shouldRejectAssociateSecondProduct(){
-        Stock stock = new Stock(product, 50);
-        stock.associateProduct(product);
-        Product secondProduct = new Product("teste",
-                "Teste",
-                BigDecimal.valueOf(350.00));
-        assertThrows(InvalidStockException.class,
-                ()-> stock.associateProduct(secondProduct));
-    }
-
-    @Test
     void shouldIncreaseStockQuantity(){
 
         Stock stock = new Stock(product, 50);
